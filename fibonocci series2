@@ -1,0 +1,28 @@
+#include<iostream>
+#include<bits/stdc++.h>  //include bits/stdc++.h incase you are not sure about which libraries to include for a specific inbuilt function
+                         // basically it includes all standard libraries 
+using namespace std;
+
+int getNthFib(int n) {
+int a=0,b=1,c=a+b;
+if(n==1) {return a;}
+else if(n==2) {return b;}
+else if(n==3) {return c;}
+
+n=n-3;  //since first three elements in the series were found above we could cut it down by three for the rest.
+while(n>0){
+a=b;
+b=c;
+c=a+b;
+n--;
+}
+return c;
+
+}
+
+int main()
+{
+int n;
+cin>>n; //input
+cout<<getNthFib(int n);
+}
