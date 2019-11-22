@@ -5,14 +5,14 @@ int getNthFib(int n);
 int fib(vector<int> memory,int n);
 
 int getNthFib(int n) {
-vector<int> memory(n+1);
+	vector<int> memory(n+1);
 	for(int i=0;i<n+1;i++)
 		memory[i]=-1;
 	memory[1]=0;
 	if(n>1)
 	memory[2]=1;
 	int answer=fib(memory,n);
-return answer;
+	return answer;
 }
 
 int fib(vector<int> memory,int n)
@@ -24,4 +24,11 @@ int fib(vector<int> memory,int n)
 		memory[n]= fib(memory,n-1)+fib(memory,n-2);
 		return memory[n];
 	}
+}
+
+int main()
+{
+	int n;
+	cin>>n; //input
+	cout<<getNthFib(int n);
 }
