@@ -1,0 +1,22 @@
+/***********************************************************QUESTION*****************************************************/
+/*For each array, perform a number of right circular rotations and return the value of the element at a given index.
+
+For example, array a=[3,4,5], number of rotations ,k=2  and indices to check, m=[1,2].
+First we perform the two rotations: [3,4,5]=>[5,3,4]=>[4,5,3]
+result=> [4,5]
+Now return the values from the zero-based indices  and  as indicated in the  array.
+*/
+
+/************************************************************OPTIMAL SOUTION*********************************************/
+
+vector<int> circularArrayRotation(vector<int> a, int k, vector<int> queries) {
+int q=queries.size();
+int n=a.size(),start=0;
+vector<int> result;
+while((k--)>0)
+    start=(start+n-1)%n;
+for(int i=0;i<q;i++)
+result.push_back(a[(start+queries[i])%n]);
+return result;
+}
+/***************************************************INPUTS COULD BE GIVEN IN A MAIN FUNCTION*******************************/
