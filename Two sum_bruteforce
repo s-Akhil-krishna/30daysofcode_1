@@ -1,0 +1,30 @@
+/* Return the indices of a pair of disjoint elements whose sum is equal to a given target. */ 
+/*Time -O(n^2) | Space -O(1)*/
+//BruteForce approach
+
+#include<bits/stdc++.h>
+class Two_sum {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n=nums.size();
+        int i=0,j=n-1,k=0;int p,q;
+        vector<int> result;
+        //brute force approach
+        for(p=0;p<n-1;p++)
+        {
+            for(q=p+1;q<n;q++)
+            {
+                if(nums[p]+nums[q]==target)
+                {
+                    result.push_back(p);
+                    result.push_back(q);
+                    return result;
+                }
+                
+            }
+        }
+        result.push_back(0);
+        result.push_back(0);
+        return result;
+    }
+};
