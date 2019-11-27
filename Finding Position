@@ -1,0 +1,36 @@
+// Question description : https://practice.geeksforgeeks.org/problems/finding-position/0
+//Time- O(1) | Space -O(1)
+
+#include <iostream>
+#include<math.h>
+using namespace std;
+
+int main() {
+		int t;
+	cin>>t;
+	int x=1,q=0;
+	while(t>0)
+	{
+	    cin>>q;
+	    x=log10(q)/log10(2);
+	    x=pow(2,x);
+	    cout<<x<<endl;
+	    t--;
+	}
+	
+ return 0;
+}
+
+
+//solution2
+//for each test case 
+/*	{    cin>>quotient;
+	    x=1;
+	    while(quotient>1)
+	    {
+	        quotient=quotient/2;
+	        x=x*2; 
+	    }
+	    cout<<x<<endl;
+      }
+*/
