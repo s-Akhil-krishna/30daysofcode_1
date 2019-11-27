@@ -1,6 +1,6 @@
 //Check out the brute force approach before this.
 //time -O(n^2) | Space - O(n)
-
+//uses hashtables
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
