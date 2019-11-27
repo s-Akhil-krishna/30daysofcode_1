@@ -39,3 +39,46 @@ public:
         return result;
     }
 };
+
+//next approach
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> result;
+        vector<int> vec;
+        int n=nums.size();
+        int front,back,k,compliment;
+        int cur,sum;
+        sort(nums.begin(),nums.end());
+        for(cur=0;cur<n-2;++cur)
+        {
+            sum=0;
+            //two pointer approach
+            front=cur+1;back=n-1;
+            compliment=-(nums[cur]);
+            while(front < back)
+            {
+                sum=nums[front]+nums[back];
+                
+                if(sum < compliment)
+                    front++;
+                else if(sum > compliment)
+                    back--;
+                else 
+                {
+                    vec.push_back(nums[cur]);
+                    vec.push_back(nums[front]);
+                    vec.push_back(nums[back]);
+                    //sort(vec.begin(),vec.end());
+                    result.push_back(vec);
+                    while(!vec.empty())
+                        vec.pop_back();
+                         
+                }
+            }
+        }
+            return result;
+        }
+};
+
+
