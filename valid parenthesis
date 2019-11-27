@@ -1,0 +1,28 @@
+//Check the validity of parenthesis.Return true or false based on that. 
+//Time- O(n) | Space- O(n) {stack-O(n),hashmap-O(1)}
+//Using C++
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    bool isValid(string s) {
+        map<char,char> table;
+        table['[']=']';
+        table['{']='}';
+        table['(']=')';
+        int n=s.length();
+        stack<char> st;
+        bool result=false;int count=0;
+        for(int i=0;i<n;i++)
+        {
+            if(table[s[i]])
+                st.push(s[i]);
+            else if(!st.empty() && table[st.top()]==s[i])
+                st.pop();
+            else count=1;
+        }
+        if(st.empty() && !count)
+           result=true;
+        return result;
+    }
+};
