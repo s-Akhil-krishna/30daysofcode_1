@@ -1,0 +1,41 @@
+//Check out the brute force approach before this.
+//time -O(n^2) | Space - O(n)
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+      
+        vector<vector<int>> result;
+        vector<int> cur;
+        int n=nums.size();
+        int i,j,k,compliment;
+        map<int,int> table1;
+        map<vector<int>,int> table2;
+        for(k=0;k<n;k++)
+            table1[nums[k]]=k;
+            
+        for(i=0;i<n-1;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                compliment=-(nums[i]+nums[j]);
+                if(table1[compliment] && table1[compliment]!=i && table1[compliment]!=j)
+                {
+                    cur.push_back(nums[i]);
+                    cur.push_back(nums[j]);
+                    cur.push_back(nums[table1[compliment]]);
+                    
+                    sort(cur.begin(),cur.end());
+                    if(!table2[cur])
+                    {
+                        result.push_back(cur);
+                        table2[cur]=1;
+                    }
+                    while(!cur.empty())
+                        cur.pop_back();              
+                }   
+            }
+        }
+        return result;
+    }
+};
