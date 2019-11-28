@@ -1,0 +1,25 @@
+//Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+//Time - O(n) | Space -O(n)
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        map<int,int> table;
+        int n=nums.size();
+        int result;
+        for(int i=0;i<n;i++)
+        {
+            if(!table[nums[i]])
+                table[nums[i]]=1;
+            else 
+                table[nums[i]]++;
+        }      
+        for(int i=0;i<n;i++)
+        {
+            if(table[nums[i]]==1) 
+            result= nums[i];
+        }
+        return result;
+    }
+};
