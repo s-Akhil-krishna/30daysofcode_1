@@ -23,3 +23,19 @@ public:
         return result;
     }
 };
+
+//Next approach
+// Time -O(n) | Space -O(1) 
+// xor(a,0)=a , xor(a,a)=0, xor(a,a,b)=b
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        //Bit manipulation
+        int result=0,n=nums.size();
+        for (int i=0;i<n;i++)
+        result=result^nums[i];
+        return result;
+    }
+};
