@@ -1,0 +1,19 @@
+//question : https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/578/
+//Time-O(n) | Space -O(n)
+//Uses hashtable
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        bool result=false;
+        int n=nums.size(),a=0;
+        map<int,int> table;
+        for(int i=0;i<n;i++)
+        {
+            if(!table[nums[i]])
+                table[nums[i]]=1;
+            else {result=true;break;}
+        }
+        return result;
+    }
+};
