@@ -1,6 +1,8 @@
 //Question :https://leetcode.com/problems/group-anagrams/submissions/
 //It works but there has to be some improvements in overall time and space complexities.
 
+
+//Version1
 class Solution {
 public:
     bool Anagram(string a,string b)
@@ -70,3 +72,94 @@ public:
     }
 
 };
+
+
+//VERSION 2
+
+class Solution {
+public:
+    bool Anagram(map<char,int> t1,map<char,int> t2,string a,string b)
+    {
+        bool answer=true; 
+        int n1=a.length(),n2=b.length();
+        if(!n1)
+        {
+            if(!n2) return true;
+            else return false;
+        }
+        else if(!n2)
+        {
+            if(!n1) return true;
+            else return false;
+        }
+else{
+        
+    if(n1>n2){
+        for(int i=0;i<n1;i++)
+        {
+            if(t1[a[i]]!=t2[a[i]])
+                answer=false;
+        }
+    }//if
+    else
+        for(int i=0;i<n2;i++)
+        {
+            if(t1[b[i]]!=t2[b[i]])
+                answer=false;
+        }
+}//else
+        return answer;
+    }//function
+    
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+     vector<vector<string>> result;
+        int i,j,k,n=strs.size();
+        map<int ,int> table;
+        map<char,int> box[n];
+        for(i=0;i<n;i++)
+        {
+            int len=strs[i].length();
+            for(j=0;j<len;j++)
+            {
+                if(!box[i][strs[i][j]])
+                box[i][strs[i][j]]=1;
+                else box[i][strs[i][j]]++;
+            }
+        }
+        
+        for(i=0;i<n;i++)
+        {
+            if(table[i]) continue;       
+            vector<string> a;
+            a.push_back(strs[i]);
+            for(j=i+1;j<n;j++)
+            {
+                if(table[j]) continue;
+                if(Anagram( box[i],box[j],strs[i],strs[j]))
+                {a.push_back(strs[j]);table[j]=1;}
+            }
+            result.push_back(a);
+        }
+        return result;
+    } //function
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
