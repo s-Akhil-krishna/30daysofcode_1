@@ -75,33 +75,34 @@ public:
 
 
 //VERSION 2
+//Time- O(n^2+nk)  | Space -O(n)
 
 class Solution {
 public:
-    bool Anagram(map<char,int> t1,map<char,int> t2,string a,string b)
-    {
+    bool Anagram(map<char,int> t1,map<char,int> t2,string a,string b) //Time - O(n+k) | Space -O(1)
+    {   
         bool answer=true; 
         int n1=a.length(),n2=b.length();
-        if(!n1)
+        if(!n1)       //O(n)
         {
             if(!n2) return true;
             else return false;
         }
-        else if(!n2)
+        else if(!n2)  //O(n)
         {
             if(!n1) return true;
             else return false;
         }
 else{
         
-    if(n1>n2){
+    if(n1>n2){  //O(k) { k=max length of a string }
         for(int i=0;i<n1;i++)
         {
             if(t1[a[i]]!=t2[a[i]])
                 answer=false;
         }
     }//if
-    else
+    else    //O(k)
         for(int i=0;i<n2;i++)
         {
             if(t1[b[i]]!=t2[b[i]])
@@ -115,8 +116,9 @@ else{
      vector<vector<string>> result;
         int i,j,k,n=strs.size();
         map<int ,int> table;
-        map<char,int> box[n];
-        for(i=0;i<n;i++)
+        map<char,int> box[n]; // Space= O(26)*n= O(n)
+        
+        for(i=0;i<n;i++)   //Time-O(n*k)
         {
             int len=strs[i].length();
             for(j=0;j<len;j++)
@@ -127,7 +129,7 @@ else{
             }
         }
         
-        for(i=0;i<n;i++)
+        for(i=0;i<n;i++)  //Time -O(n^2)
         {
             if(table[i]) continue;       
             vector<string> a;
