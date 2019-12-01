@@ -1,0 +1,44 @@
+//Question: https://leetcode.com/contest/weekly-contest-165/problems/number-of-burgers-with-no-waste-of-ingredients/
+//Time - O(n) | Space - O(1)   { n is the tomatoslices/4 }
+class Solution {
+public:
+    vector<int> numOfBurgers(int tomatoSlices, int cheeseSlices) {
+        vector<int> result;
+        int jumbo=0,small=0;
+        int rem_tomato=tomatoSlices,rem_cheese=cheeseSlices;
+        if(tomatoSlices>=cheeseSlices)
+        {
+            jumbo=rem_tomato/4; //maximum possible jumbos
+             rem_tomato=rem_tomato-jumbo*4;
+             rem_cheese-=jumbo;
+        
+            if(rem_tomato==2 )
+            {small++;rem_cheese--;rem_tomato-=2;}
+            else if(rem_tomato==3 )
+            {small++;rem_cheese--;rem_tomato-=2;}
+            
+            if(rem_tomato==0 && rem_cheese==0)
+            {
+                    result.push_back(jumbo);
+                    result.push_back(small);
+                    return result;
+            }
+            
+            
+            while(jumbo>0)
+            {
+                jumbo--;rem_cheese++; //reducing one jumbo
+                small+=2;rem_cheese-=2;
+                if(rem_tomato==0 && rem_cheese==0)
+                {
+                    result.push_back(jumbo);
+                    result.push_back(small);
+                    break;
+                }
+            }//end-while
+            
+        }
+        return result;
+            
+    }//end-function
+}; //end-class
