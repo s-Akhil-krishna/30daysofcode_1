@@ -1,0 +1,65 @@
+/Question: https://leetcode.com/contest/weekly-contest-165/problems/find-winner-on-a-tic-tac-toe-game/
+
+class Solution {
+public:
+    
+    string tictactoe(vector<vector<int>>& moves) {
+        
+        vector<vector<string>> input{{".",".","."},{".",".","."},{".",".","."}};
+        
+        map<int,int> xrow,yrow;
+        map<int,int> xcol,ycol;
+        map<int,int> xdig,ydig;
+        
+        string result="draw";
+        int count=0;
+        for(int i=0;i<3;i++)
+        {
+            xrow[i]=0;yrow[i]=0;
+            xcol[i]=0;ycol[i]=0;
+        }
+        for(int i=0;i<2;i++)
+        {
+            xdig[i]=0;ydig[i]=0;
+        }
+        
+        int n1=moves.size();
+        for(int i=0;i<n1;i++)
+        {
+            string ch;
+            if(i%2==0) 
+            {
+                ch="X";
+            input[moves[i][0]][moves[i][1]]=ch;
+            if(++xrow[moves[i][0]] -3 ==0) return "A";
+            if(++xcol[moves[i][1]] -3==0) return "A";
+            if(moves[i][0]==moves[i][1]) if(++xdig[0]-3==0) return "A"; 
+            if(moves[i][0]+moves[i][1]==2) if(++xdig[1]-3==0) return "A";    
+            }
+            else
+            {
+                ch="O";
+            input[moves[i][0]][moves[i][1]]=ch;
+            if(++yrow[moves[i][0]] -3 ==0) return "B";
+            if(++ycol[moves[i][1]] -3==0) return "B";
+            if(moves[i][0]==moves[i][1]) if(++ydig[0]-3==0) return "B"; 
+            if(moves[i][0]+moves[i][1]==2) if(++ydig[1]-3==0) return "B";
+            }
+        }
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                if(input[i][j]!=".")
+                    count++;
+            }
+        }
+        if(count!=9)
+        result="Pending";
+        else
+        {
+            result="Draw";
+        }
+        return result;
+    }
+};
