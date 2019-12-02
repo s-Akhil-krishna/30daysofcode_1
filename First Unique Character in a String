@@ -1,0 +1,22 @@
+//Question: https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/881/
+//Time -O(n) | Space -O(n)
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int n=s.length();
+        map<char,int> table;
+        for(int i=0;i<n;i++)
+        {
+            if(!table[s[i]])
+                table[s[i]]=1;
+            else table[s[i]]++;   
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(table[s[i]]==1)
+                return i;
+        }
+        return -1;
+    }
+    };
