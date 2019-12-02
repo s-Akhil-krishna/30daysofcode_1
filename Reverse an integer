@@ -1,0 +1,25 @@
+//Question:https://leetcode.com/problems/reverse-integer/
+// Time -O(n) || Space -O(1)
+
+class Solution {
+public:
+    int reverse(int x) {
+        
+        int y=x,result=-1;
+        try{
+        if(x<0)
+            if(-1 *x > INT_MAX) result=-1;
+            else y= -1 *x;
+        
+        string a=to_string(y);
+        int n=a.length();
+        for(int i=0;i<n/2;i++)
+            swap(a[i],a[n-1-i]);
+        
+        result=stoi(a);
+        }
+        catch(const std::out_of_range& oor){result =0;}
+        if(x<0) result=result* -1;
+        return result;
+    }
+};
