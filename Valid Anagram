@@ -1,0 +1,30 @@
+// Question : https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/882/
+//Time -O(n) | Space -O(n)
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int n1=s.length(),n2=t.length();
+        map<char,int> t1,t2;
+        bool result=true;
+        if(n1!=n2) return false;
+        for(int i=0;i<n1;i++)
+        {
+            if(!t1[s[i]])
+                t1[s[i]]=1;
+            else t1[s[i]]++;
+        }
+        
+        for(int i=0;i<n2;i++)
+        {
+            if(!t2[t[i]])
+                t2[t[i]]=1;
+            else t2[t[i]]++;
+        }
+        for(int i=0;i<n1;i++)
+        {
+            if(t1[s[i]]!=t2[s[i]])
+                result=false;
+        }
+        return result;   
+    }
+};
