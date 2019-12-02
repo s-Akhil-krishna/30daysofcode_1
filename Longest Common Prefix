@@ -1,0 +1,36 @@
+//Question:https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/887/
+//Time -O(n) | Space -O(n) {result could be of size n}
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string smallest_string;
+        int n=strs.size(),sm_index=-1,sm_length=INT_MAX;
+        string result="";
+        if(n==0) return result;
+        for(int i=0;i<n;i++)
+        {
+            if(strs[i].length()<sm_length)
+            {
+                sm_length=strs[i].length();
+                sm_index=i;
+            }   
+        }
+        smallest_string=strs[sm_index];
+        //map<string,int> table;
+        int j=0,count=0;
+        while(j<sm_length)
+        {
+            count=0;
+            for(int i=0;i<n;i++)
+            {
+                if(strs[i][j]==smallest_string[j])
+                    count++;
+            }
+            if(count==n) result+=smallest_string[j];
+            else break;
+            j++;
+        }
+        return result;
+    }
+};
