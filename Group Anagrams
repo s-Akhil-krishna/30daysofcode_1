@@ -168,23 +168,3 @@ else{
         return result;
     } //function
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
