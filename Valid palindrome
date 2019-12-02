@@ -1,0 +1,26 @@
+//Question : https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/883/
+//Time -O(n) | Space -O(n)
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int n=s.length();
+        string s1=""; bool result=true;
+        for(int i=0;i<n;i++)
+        {
+            if(s[i]>='a' && s[i]<= 'z' )
+                s1+=s[i];
+            else if(s[i]>='A' && s[i]<='Z')
+                s1 += (s[i]+32);
+            else if(s[i]>='0' && s[i]<='9')
+                s1+=s[i];
+        }
+        int n1=s1.length();
+        for(int i=0;i<n1/2;i++)
+        {
+            if(s1[i]!=s1[n1-1-i])
+                return false;
+        }
+        return result;
+    }
+};
