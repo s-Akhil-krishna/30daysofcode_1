@@ -1,0 +1,21 @@
+//Question: https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/885/
+//Time -O(n) | Space -O(1)
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        
+        int n1=haystack.length(),n2=needle.length();
+        if(n2==0) return 0;
+        int i=0;string str="";
+        while(i<n1-n2+1)
+        {
+        str=haystack.substr(i,n2);
+        if(str==needle)
+            return i;
+        i++;
+        }
+        return -1;  
+        
+    }
+};
