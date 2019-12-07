@@ -1,0 +1,58 @@
+//Question: https://leetcode.com/explore/interview/card/top-interview-questions-easy/93/linked-list/771/
+//Time -O(n1+n2) | Space -O(n1+n2)
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* head1, ListNode* head2) {
+        //Time -O(n1+n2) | Space -O(n1+n2)
+ListNode *temp1=head1;
+ListNode *temp2=head2;
+vector<int> list1,list2,result;
+if(temp1==NULL && temp2 == NULL)
+    return head1;
+else if(temp1==NULL) return head2;
+else if(temp2==NULL) return head1;
+while(temp1->next!=NULL){ // store list1 -O(n1)
+    list1.push_back(temp1->val);
+    temp1=temp1->next;
+}
+list1.push_back(temp1->val);
+
+while(temp2->next!=NULL){ //store list2 -O(n2)
+    list2.push_back(temp2->val);
+    temp2=temp2->next;
+}
+list2.push_back(temp2->val);
+
+temp1->next=head2; //merging linkedlists 
+
+int i=0,j=0,k=0;
+int n1=list1.size(),n2=list2.size();
+
+while(i<n1 && j<n2)  // sorting in Time-O(n1+n2)
+{
+    if(list1[i]<list2[j])
+    result.push_back(list1[i++]);
+    else result.push_back(list2[j++]);
+}
+while(i<n1)
+result.push_back(list1[i++]);
+while(j<n2)
+result.push_back(list2[j++]);
+
+temp1=head1; i=0;
+while(temp1!=NULL) //Time -O(n1+n2)
+{
+    temp1->val=result[i++];
+    temp1=temp1->next;
+}
+return head1;
+    }
+};
