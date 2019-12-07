@@ -1,0 +1,60 @@
+//Question : https://leetcode.com/explore/interview/card/top-interview-questions-easy/93/linked-list/560/
+//2 solutions exist.
+
+//solution1: Time -O(n) | Space -O(n)
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        vector<int> list;
+        ListNode *temp=head;
+        while(temp!=NULL)
+        {
+            list.push_back(temp->val);
+            temp=temp->next;
+        }
+        temp=head;
+        int i=list.size()-1;
+        while(temp!=NULL)
+        {
+            temp->val=list[i--];
+            temp=temp->next;
+        }
+        return head;       
+    }
+};
+
+//solution2 : Time-O(n) | Space -O(1)
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *prev=NULL,*cur=head,*nextnode=NULL;
+        while(cur!=NULL)
+        {
+            nextnode=cur->next;
+            cur->next=prev;
+            prev=cur;
+            cur=nextnode;
+        }
+          
+        return prev;
+    }
+};
+
+
+
