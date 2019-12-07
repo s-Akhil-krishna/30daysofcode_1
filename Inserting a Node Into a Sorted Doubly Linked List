@@ -1,0 +1,35 @@
+//Question: https://www.hackerrank.com/challenges/insert-a-node-into-a-sorted-doubly-linked-list/problem
+//Time -O(n) | Space -O(1)
+
+DoublyLinkedListNode* sortedInsert(DoublyLinkedListNode* head, int data) {
+DoublyLinkedListNode *cur=head,*pre=NULL;
+DoublyLinkedListNode *newnode= new DoublyLinkedListNode(data);
+if(cur==NULL)
+    {head= newnode;return head;}
+
+while(cur!=NULL )
+{
+    if(cur->data > data  )
+    {
+        if(cur->prev==NULL){//insert at beginning
+        newnode->next=head;
+        head->prev=newnode;
+        head=newnode;
+        }
+        else{ //insert in middle
+        pre=cur->prev;
+        cur->prev=newnode;
+        newnode->next=cur;
+        pre->next=newnode;
+        }
+        break;
+    }
+    if(cur->next==NULL)
+    {//insert at end
+        cur->next=newnode;
+        newnode->prev=cur;
+        break;
+    }
+    
+    cur=cur->next;
+}
