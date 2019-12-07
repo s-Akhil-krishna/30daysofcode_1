@@ -1,0 +1,44 @@
+//Question : https://leetcode.com/explore/interview/card/top-interview-questions-easy/93/linked-list/603/
+
+//two pass algorithm
+//Time -O(n) | Space -O(1)
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        //two pass solution
+        ListNode *temp=head;
+        int count=0;
+        while(temp!=NULL) //O(n)
+        { 
+            count++;temp=temp->next;
+        }
+        int pos=count-n+1;
+        temp=head;
+        if(pos==1)
+            head=head->next;
+        else{
+        while(pos>2 && temp!=NULL)
+        {
+            temp=temp->next;
+            pos--;
+        }
+            
+            temp->next=temp->next->next;
+        }
+        return head;
+    }
+};
+
+//One pass algorithm exists
+//Time -O(n) | Space -O(1)
+
+
+
