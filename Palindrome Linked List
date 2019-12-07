@@ -1,0 +1,30 @@
+//Question : https://leetcode.com/explore/interview/card/top-interview-questions-easy/93/linked-list/772/
+//Time -O(n) | Space- O(1)
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        int count=0;
+        ListNode *temp=head;
+        vector<int> st;
+        if(head==NULL) return true;
+        while(temp!=NULL )
+        {  
+            count++;
+            st.push_back(temp->val);
+            temp=temp->next;
+        }
+        for(int i=0;i<st.size()/2;i++)
+            if(st[i]!=st[count-i-1])
+                return false;
+        return true;
+    }
+};
