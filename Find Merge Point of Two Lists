@@ -1,0 +1,41 @@
+//Question: https://www.hackerrank.com/challenges/find-the-merge-point-of-two-joined-linked-lists/problem
+//Time -O(n+m) | Space -O(1)  n=list1.size,m=list2.size
+
+int findMergeNode(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
+SinglyLinkedListNode *temp1=head1;
+SinglyLinkedListNode *temp2=head2;
+int len1=0,len2=0;
+while(temp1!=NULL)//O(n)
+{len1++;temp1=temp1->next;}
+while(temp2!=NULL)//O(m)
+{len2++;temp2=temp2->next;}
+temp1=head1;
+temp2=head2;
+if(len1>len2)
+{
+    int diff = len1-len2;
+    temp1=head1;
+    while(diff>0 && temp1!=NULL)
+    {
+        temp1=temp1->next;
+        diff--;
+    }
+}
+else if(len1<len2)
+{
+    int diff = len2-len1;
+    temp2=head2;
+    while(diff>0 && temp2!=NULL)
+    {
+        temp2=temp2->next;
+        diff--;
+    }
+}
+while(temp1!=NULL && temp2!=NULL)  //O(n+m)
+{
+    if(temp1==temp2) return temp1->data;
+    temp1=temp1->next;
+    temp2=temp2->next;
+}
+return -1;
+}
