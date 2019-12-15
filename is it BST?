@@ -1,0 +1,32 @@
+//Question: https://leetcode.com/explore/interview/card/top-interview-questions-easy/94/trees/625/
+//Time -O() | Space -O() 
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> result;
+ void inorder(TreeNode * root){
+     if(root==NULL) return;
+     inorder(root->left);
+     result.push_back(root->val);
+     inorder(root->right);
+ }
+    
+    bool isValidBST(TreeNode* root ) {
+         inorder(root);
+        int i,n=result.size();
+        for(i=1;i<n;i++)
+            if(result[i]<=result[i-1]) return false;
+        
+        return true;
+    }
+    
+};
