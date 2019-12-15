@@ -1,0 +1,23 @@
+//Question: https://leetcode.com/contest/biweekly-contest-15/problems/remove-covered-intervals/
+//Time-O(n^2) || Space -O(1)
+
+class Solution {
+public:
+    int removeCoveredIntervals(vector<vector<int>>& intervals) {
+        int n=intervals.size(),final_n=n;
+    
+        map<int,int> table;
+        for(int i=0;i<n;i++){
+            int len1= intervals[i][1]-intervals[i][0];
+            for(int j=0;j<n;j++){
+                int len2=intervals[j][1]-intervals[j][0];
+                if(len2>len1){
+                    if( intervals[j][0] <= intervals[i][0] && intervals[j][1]>=intervals[i][1]  )
+                    {final_n--; goto x;}
+                }//end-if
+            }//end-inner-for
+            x: ;
+        }//end-outer-for
+        return final_n;
+    }//func
+};
